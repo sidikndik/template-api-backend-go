@@ -82,7 +82,7 @@ func ServerApiGRPCProduct(db *gorm.DB) {
 	}
 
 	ProductService := grpchandler.NewProductServiceServer(db)
-	grpcServer := grpc.NewServer()
+	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(middleware.AuthUnaryInterceptor()))
 	pb.RegisterProductServiceServer(grpcServer, &ProductService)
 
 	log.Printf("Product Service is running on port 50051...")
@@ -99,7 +99,7 @@ func ServerApiGRPCUser(db *gorm.DB) {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 
-	grpcServer := grpc.NewServer()
+	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(middleware.AuthUnaryInterceptor()))
 	pb.RegisterUserServiceServer(grpcServer, &grpchandler.UserServiceServer{DB: db})
 
 	log.Printf("User Service is running on port 50052...")

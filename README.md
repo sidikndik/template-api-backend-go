@@ -21,6 +21,7 @@ r.Use(middleware.Recoverer)
 ```
 
 ## setup framework gin
+Gin adalah framework paling populer di ekosistem Go karena performanya yang cepat dan fitur bawaan yang lengkap.
 - setup router
 ```go
 r := gin.Default()
@@ -40,6 +41,7 @@ r.Use(CustomMiddleware())
 ```
 
 ## setup framework fiber
+Fiber terinspirasi dari Express (Node.js) dan dibangun di atas Fasthttp, mesin HTTP tercepat untuk Go.
 - setup router
 ```go
 app := fiber.New()
@@ -58,6 +60,7 @@ app.Use(logger.New())
 ```
 
 ## setup GRPC
+GRPC adalah framework untuk membangun layanan RPC (Remote Procedure Call) yang cepat dan efisien.
 - setup router
 ```go
 grpcServer := grpc.NewServer()
@@ -72,7 +75,7 @@ grpc.UnaryInterceptor(myInterceptor)
 ```
 
 - generate file proto
-running ini directory root (main)
+running in directory root (main)
 ```cmd
 protoc --proto_path=proto --go_out=./proto --go-grpc_out=./proto proto/product.proto
 ```
