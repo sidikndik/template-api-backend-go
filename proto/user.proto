@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package user;
+option go_package = "./pb";
+
+// user proto
+service UserService {
+    //resgister method
+  rpc Register(RegisterRequest) returns (RegisterResponse); 
+    //Login method
+  rpc Login(LoginRequest) returns (LoginResponse);
+      //Validate method
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
+}
+
+
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message RegisterResponse {
+  string message = 1;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message ValidateTokenResponse {
+  bool valid = 1;
+  string user_id = 2;
+}
+
